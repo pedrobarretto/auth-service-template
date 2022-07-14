@@ -10,10 +10,10 @@ The template includes the following dependencies:
 
 How to use the template:
 
-#### `Use this repository as a template for your new repository`
+#### `Use this repository as a template for your base auth service`
 #### `npm install`
 #### `npm run dev`
 
-To change the main file, from "server.ts" to "index.ts", for example, just renew the command in package.json, and rename the file.
+To change the main file, from "app.ts" to "index.ts", for example, just renew the command in package.json, and rename the file.
 
-- src/server.ts -> src/index.ts
+- src/app.ts -> src/index.ts
