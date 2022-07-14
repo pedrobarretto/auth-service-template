@@ -4,9 +4,13 @@ To facilitate mine and your creation of projects using Express, I made this depe
 
 The template includes the following dependencies:
 - Express
+- Express-session
 - Typescript
 - Eslint (Single Quotes, Airbnb)
 - Prettier
+- Axios
+- bcrypt
+- jsonwebtoken
 
 How to use the template:
 
