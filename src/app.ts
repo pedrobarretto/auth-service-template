@@ -54,4 +54,8 @@ app.get('/secret', (req: Request, res: Response) => {
 
 connect();
 
-app.listen(3000);
+app.listen(process.env.PORT, () => {
+  console.log('**********************************************');
+  console.log(`************Auth API - Porta: ${process.env.PORT}************`);
+  console.log('**********************************************');
+});
