@@ -1,4 +1,4 @@
-# Express API Template
+# Express Auth API Template
 
 To facilitate mine and your creation of projects using Express, I made this dependency template.
 
