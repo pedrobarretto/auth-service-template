@@ -36,6 +36,14 @@ app.post('/login', async (req: Request, res: Response) => {
   return res.sendStatus(200);
 });
 
+app.post('/logout', async (req: Request, res: Response) => {
+  req.session.userId = null;
+  req.session.destroy((err) => {
+    console.debug(err);
+  });
+  return res.sendStatus(200);
+});
+
 app.get('/secret', (req: Request, res: Response) => {
   if (req.session.userId) {
     return res.send(`Logado com sucesso! Seu id: ${req.session.userId}`);
