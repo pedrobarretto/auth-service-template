@@ -23,4 +23,5 @@ export interface LoginDto {
 export interface PassWithId {
   isPasswordValid: boolean;
   userId: string;
+  token: string;
 }

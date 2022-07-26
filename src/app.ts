@@ -11,6 +11,7 @@ app.use(express.json());
 app.use(
   session({
     secret: process.env.SESSION_SECRET,
+    cookie: { maxAge: 3600000 },
   })
 );
 
@@ -26,17 +27,20 @@ app.post(
   }
 );
 
-app.post('/login', async (req: Request, res: Response) => {
+app.post('/auth/login', async (req: Request, res: Response) => {
   const { email, password } = req.body;
-  const { isPasswordValid, userId } = await userApp.login({ email, password });
+  const { isPasswordValid, userId, token } = await userApp.login({
+    email,
+    password,
+  });
   if (isPasswordValid) {
     req.session.userId = userId;
     req.session.save();
   }
-  return res.sendStatus(200);
+  return res.status(200).json({ userId, token });
 });
 
-app.post('/logout', async (req: Request, res: Response) => {
+app.post('/auth/logout', async (req: Request, res: Response) => {
   req.session.userId = null;
   req.session.destroy((err) => {
     console.debug(err);
@@ -49,7 +53,7 @@ app.get('/secret', (req: Request, res: Response) => {
     return res.send(`Logado com sucesso! Seu id: ${req.session.userId}`);
   }
 
-  return res.send('Nao esta logado');
+  return res.sendStatus(403);
 });
 
 connect();

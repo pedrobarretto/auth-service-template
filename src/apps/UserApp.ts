@@ -30,7 +30,6 @@ class UserApp {
       role: Roles.user,
       id: uuid(),
     };
-    console.debug(newUser);
     await UserModel.create(newUser);
 
     return { ...user, id: newUser.id };
@@ -49,7 +48,10 @@ class UserApp {
       password,
       user.password
     );
-    return { isPasswordValid, userId: user.id };
+
+    const { token } = authApp.generateToken(user.id, user.role, user.email);
+
+    return { isPasswordValid, userId: user.id, token };
   }
 }
 
