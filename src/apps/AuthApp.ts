@@ -3,6 +3,7 @@ import jsonwebtoken from 'jsonwebtoken';
 
 import { Token } from '../interfaces/Auth';
 import { Roles } from '../interfaces/Roles';
+import { ONE_HOUR } from '../interfaces/Time';
 
 class AuthApp {
   async hashPassword(password: string) {
@@ -30,11 +31,11 @@ class AuthApp {
       },
       process.env.TOKEN_SECRET,
       {
-        expiresIn: 3600000,
+        expiresIn: ONE_HOUR,
       }
     );
 
-    return { token: `Bearer ${token}` };
+    return { token };
   }
 }
 

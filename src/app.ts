@@ -2,6 +2,7 @@ import express, { Response, Request } from 'express';
 import session from 'express-session';
 
 import { userApp } from './apps/UserApp';
+import { ONE_HOUR } from './interfaces/Time';
 import { checkUserCredentials } from './middlewares/UserMiddleware';
 import { connect } from './mongo';
 
@@ -11,7 +12,7 @@ app.use(express.json());
 app.use(
   session({
     secret: process.env.SESSION_SECRET,
-    cookie: { maxAge: 3600000 },
+    cookie: { maxAge: ONE_HOUR },
   })
 );
 
