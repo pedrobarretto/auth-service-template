@@ -1,3 +1,4 @@
+import cors from 'cors';
 import express, { Response, Request } from 'express';
 import session from 'express-session';
 
@@ -9,6 +10,11 @@ import { connect } from './mongo';
 const app = express();
 
 app.use(express.json());
+app.use(
+  cors({
+    origin: process.env.AXIOS_BASE_URL,
+  })
+);
 app.use(
   session({
     secret: process.env.SESSION_SECRET,
